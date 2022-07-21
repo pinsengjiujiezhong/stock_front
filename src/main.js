@@ -6,6 +6,7 @@ import './plugins/element.js'
 import axios from 'axios'
 import 'echarts'
 import VueEcharts from 'vue-echarts'
+import './assets/reset.css'
 
 // axios.defaults.baseURL = '/api'
 Vue.prototype.$http = axios

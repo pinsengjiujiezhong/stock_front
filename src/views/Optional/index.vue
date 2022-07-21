@@ -96,7 +96,7 @@ export default {
       const params = {
         optionals: this.codeList.join('_')
       }
-      const { data: res } = await this.$http.get('/api/optional/', { params })
+      const { data: res } = await this.$http.get('/optional/', { params })
       this.optionalList = res
     },
     codeClose(tag) {
@@ -106,7 +106,7 @@ export default {
     async codeSubmit() {
       console.log('調用了')
       if (this.stockCode.length !== 6) return this.$message.error('请输入6位股票代码')
-      const { data: res } = await this.$http('/api/check/', { params: { code: this.stockCode } })
+      const { data: res } = await this.$http('/check/', { params: { code: this.stockCode } })
       if (!res.check) return this.$message.error('请输入正确的股票代码')
       if (this.stockCode) {
         this.codeList.push(this.stockCode)
@@ -114,6 +114,7 @@ export default {
       storage.set('codes', JSON.stringify(this.codeList))
       this.codeInputVisible = false
       this.stockCode = ''
+      window.location.reload()
     },
     showInput() {
       this.codeInputVisible = true
@@ -129,7 +130,7 @@ export default {
     },
     async getKline(code) {
       const params = { code }
-      const { data: res } = await this.$http.get('/api/kline/', { params })
+      const { data: res } = await this.$http.get('/kline/', { params })
       this.echartOption = {
         title: {
           show: true,
